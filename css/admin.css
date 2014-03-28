@@ -1,0 +1,9 @@
+/* CSS Document */
+#post-body #normal-sortables { min-height: 0px; }
+.tablenav.top .alignleft.actions select[name="m"],
+.tablenav.top .alignleft.actions select#cat,
+.tablenav.top .alignleft.actions input#post-query-submit,
+.tablenav.top .view-switch { 
+    display: none; 
+}
+.subsubsub { display: none; }
