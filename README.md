@@ -1,7 +1,7 @@
 WP-Address-Schema
 =================
 
-A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness. WP Address Schema can be downloaded directly from here, [our website](https://www.creare.co.uk/services/wp-address-schema) or from the Wordpress Plugin Directory (coming soon).
+A simple WordPress plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness. WP Address Schema can be downloaded directly from here, [our website](https://www.creare.co.uk/services/wp-address-schema) or from the Wordpress Plugin Directory (coming soon).
 
 What does it do?
 ================
