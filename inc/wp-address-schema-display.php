@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @package Creare-WP-Address-Schema
+ * @package WP-Address-Schema
  */
 /*
-Plugin Name: Creare WP Address Schema
-Text Domain: creare-wp-address-schema
+Plugin Name: WP Address Schema
+Text Domain: wp-address-schema
 Plugin URI: http://www.creare.co.uk
-Description: 
-Version: 0.0.1
+Description: A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness.
+Version: 0.0.4
 Author: Creare
 Author URI: http://www.creare.co.uk
 License: GPLv2 or later
 */
 /*
-Copyright 2014  Creare  (email : @creare.co.uk)
+Copyright 2014  Creare  (email : tom.f@creare.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -110,16 +110,29 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 		private function parseOpeningHours($hours = array(), $seperate) {
 			$string = '';
 			foreach($hours as $time) {
-				$html = '<time itemprop="openingHours" datetime="'.$time.'">';
+				
 				$time_array = explode(' ', $time);
 				$day_array = explode('-', $time_array[0]);
-				if(count($day_array) > 1) {
-					$html .= $this->getDayName($day_array[0]).' to '.$this->getDayName($day_array[1]);					
+				if($time_array[1] != 'Closed') {
+					$html = '<time itemprop="openingHours" datetime="'.$time.'">';	
+					if(count($day_array) > 1) {
+						$html .= $this->getDayName($day_array[0]).' to '.$this->getDayName($day_array[1]);					
+					} else {
+						$html .= $this->getDayName($day_array[0]);
+					}
+				
+					$html .= " &mdash; ".$time_array[1];
+					$html .= '</time>';
 				} else {
-					$html .= $this->getDayName($day_array[0]);
+					$html = '';	
+					if(count($day_array) > 1) {
+						$html .= $this->getDayName($day_array[0]).' to '.$this->getDayName($day_array[1]);					
+					} else {
+						$html .= $this->getDayName($day_array[0]);
+					}
+					$html .= " &mdash; ".$time_array[1];
 				}
-				$html .= " &mdash; ".$time_array[1];
-				$html .= '</time>';
+				
 				$string .= $this->parseLine($html, $seperate, 'opening-hours');
 				
 			}

@@ -26,6 +26,7 @@ WP Address Schema has been designed to work perfectly alongside other popular pl
 Updates
 =======
 
+* 0.0.4 - Opening hour schema changes, fixed class naming inconsistencies, updated class comment headers
 * 0.0.3 - Initial Stable Release.
 
 Who's it by?

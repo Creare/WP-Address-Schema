@@ -1,4 +1,36 @@
 <?php
+
+/**
+ * @package WP-Address-Schema
+ */
+/*
+Plugin Name: WP Address Schema
+Text Domain: wp-address-schema
+Plugin URI: http://www.creare.co.uk
+Description: A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness.
+Version: 0.0.4
+Author: Creare
+Author URI: http://www.creare.co.uk
+License: GPLv2 or later
+*/
+/*
+Copyright 2014  Creare  (email : tom.f@creare.co.uk)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as 
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+
 class Wp_Address_Schema_Widget extends WP_Widget {
 	// Config Constants
 	public $name;
@@ -64,7 +96,7 @@ class Wp_Address_Schema_Widget extends WP_Widget {
 		$widget_id = $widget_code_a[0];
 		
 		require_once $this->inc_dir.'wp-address-schema-display.php';
-		$display = new Creare_Wp_Address_Schema_Display();
+		$display = new Wp_Address_Schema_Display();
 		echo $before_widget;
 		echo $display->parseAddress($widget_id);
 		echo $after_widget;
