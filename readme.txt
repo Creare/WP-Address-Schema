@@ -50,6 +50,23 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 0.1.0 =
+
+Progression to release version.
+* Admin
+** Fixes label alignment and input widths
+** Added placeholders to time fields
+** Added JS validation & UX improvements (autofocus etc)
+** Show/Hide time boxes depending on Open/Close status
+** Added template shortcode column
+** Added ? links to column headings
+** Added support for sub classifications of the LocalBusiness Organisational Schema 
+** Added option to show/hide closed days on the front end
+* Frontend
+Fixed div/ul closing tag bug
+** Added support for sub classifications of the LocalBusiness Organisational Schema
+** Added option to show/hide closed days on the front end
+
 = 0.0.4 =
 
 * Changes to the Opening Hour schema to exclude closed days from any formatting

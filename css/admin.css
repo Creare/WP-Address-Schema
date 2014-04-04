@@ -7,3 +7,9 @@
     display: none; 
 }
 .subsubsub { display: none; }
+
+#wp_address_schema_template_wp_address_schema_schema_options_section p span.note { font-size: 0.9em; }
+
+#wp_address_schema_template_wp_address_schema_address_section th { text-align: left; width: 150px; }
+#wp_address_schema_template_wp_address_schema_openinghours_section input.text { width: 50px; }
+#wp_address_schema_template_wp_address_schema_openinghours_section p { margin: 0; }

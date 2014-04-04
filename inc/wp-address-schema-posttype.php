@@ -1,7 +1,34 @@
 <?php
-/*
- * Text Domain: creare-wp-address-schema
+
+/**
+ * @package WP-Address-Schema
  */
+/*
+Plugin Name: WP Address Schema
+Text Domain: wp-address-schema
+Plugin URI: http://www.creare.co.uk
+Description: A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness.
+Version: 0.1.0
+Author: Creare
+Author URI: http://www.creare.co.uk
+License: GPLv2 or later
+*/
+/*
+Copyright 2014  Creare  (email : tom.f@creare.co.uk)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as 
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
 if(!class_exists('WP_Address_Schema_Posttype'))
 {
@@ -28,7 +55,8 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 			'friday', 'friday_from', 'friday_to',
 			'saturday', 'saturday_from', 'saturday_to',
 			'sunday', 'sunday_from', 'sunday_to',
-			'seperate'
+			'seperate', 
+			'schema_classification', 'display_closed'
         );
 		protected $inc_dir;
 		protected $plugin_dir;
@@ -64,21 +92,27 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 		public function add_admin_css($hook_suffix) {
 			$typenow = $this->global['typenow']; 
 			if ($typenow==self::POST_TYPE) {
-				wp_register_style('address_schema_admin_css', $this->plugin_url.'css/admin.css', false, '1.0.0' );
-       			wp_enqueue_style('address_schema_admin_css' );
+				wp_register_style('wpas-admin-css', $this->plugin_url.'css/admin.css', false, '1.0.0' );
+       			wp_enqueue_style('wpas-admin-css' );
+				wp_register_script('wpas-admin-js', $this->plugin_url.'js/admin.js', array('jquery'));
+       			wp_enqueue_script('wpas-admin-js');
 			}
 		}
 		
 		public function add_new_wp_address_schema_columns($columns) {
 			$new_columns['title'] = _x('Address Title', 'column name');
-			$new_columns['shortcode'] = _x('Shortcode', 'column name');
+			$new_columns['cms_shortcode'] = _x('CMS Shortcode <a href="https://codex.wordpress.org/Shortcode" target="_blank">?</a>', 'column name');
+			$new_columns['template_shortcode'] = _x('Template Shortcode <a href="http://codex.wordpress.org/Function_Reference/do_shortcode" target="_blank">?</a>', 'column name');
 		   	return $new_columns;
 		}
 		
 		public function render_new_wp_address_schema_columns($column,$post_id) {
 			switch ( $column ) {
-				case 'shortcode' :
+				case 'cms_shortcode' :
 					echo '[address_schema address="wp_as_'.$post_id.'"]';
+					break;
+				case 'template_shortcode' :
+					echo "&lt;?php do_shortcode('[address_schema address=\"wp_as_".$post_id."\"]) ?&gt;";
 					break;
 			}
 		}
@@ -167,6 +201,12 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 		{
 			//add_meta_box( $id, $title, $callback, $post_type, $context,$priority, $callback_args );
 			add_meta_box( 
+				sprintf('wp_address_schema_template_%s_schema_options_section', self::POST_TYPE),
+				_x('Frontend Schema Options', 'schema_options', self::TEXT_DOMAIN),
+				array(&$this, 'add_inner_meta_box_schema_options'),
+				self::POST_TYPE
+			);  
+			add_meta_box( 
 				sprintf('wp_address_schema_template_%s_address_section', self::POST_TYPE),
 				_x('Address', 'address', self::TEXT_DOMAIN),
 				array(&$this, 'add_inner_meta_box_address'),
@@ -179,9 +219,9 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 				self::POST_TYPE
 			);    
 			add_meta_box( 
-				sprintf('wp_address_schema_template_%s_options_section', self::POST_TYPE),
-				_x('HTML Display Options', 'options', self::TEXT_DOMAIN),
-				array(&$this, 'add_inner_meta_box_options'),
+				sprintf('wp_address_schema_template_%s_html_options_section', self::POST_TYPE),
+				_x('HTML Display Options', 'html_options', self::TEXT_DOMAIN),
+				array(&$this, 'add_inner_meta_box_html_options'),
 				self::POST_TYPE
 			);  
 			
@@ -212,10 +252,16 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 			include('metaboxes/wp-address-schema-posttype-openinghours.php');         
 		}
 		
-		public function add_inner_meta_box_options($post)
+		public function add_inner_meta_box_html_options($post)
 		{       
 			// Render the metabox
-			include('metaboxes/wp-address-schema-posttype-options.php');         
+			include('metaboxes/wp-address-schema-posttype-html-options.php');         
+		}
+
+		public function add_inner_meta_box_schema_options($post)
+		{       
+			// Render the metabox
+			include('metaboxes/wp-address-schema-posttype-schema-options.php');         
 		}
 		
 		public function custom_post_submit_meta_box($post)

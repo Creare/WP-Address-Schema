@@ -10,7 +10,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="monday_from" name="monday_from" value="<?php echo @get_post_meta($post->ID, 'monday_from', true); ?>"/>&nbsp;&mdash;&nbsp;<input type="text" id="monday_to" name="monday_to" value="<?php echo @get_post_meta($post->ID, 'monday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="monday_from" name="monday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'monday_from', true); ?>"/>&nbsp;&mdash;&nbsp;<input type="text" id="monday_to" name="monday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'monday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
 	</tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -25,7 +25,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="tuesday_from" name="tuesday_from" value="<?php echo @get_post_meta($post->ID, 'tuesday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="tuesday_to" name="tuesday_to" value="<?php echo @get_post_meta($post->ID, 'tuesday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="tuesday_from" name="tuesday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'tuesday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="tuesday_to" name="tuesday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'tuesday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -40,7 +40,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="wednesday_from" name="wednesday_from" value="<?php echo @get_post_meta($post->ID, 'wednesday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="wednesday_to" name="wednesday_to" value="<?php echo @get_post_meta($post->ID, 'wednesday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="wednesday_from" name="wednesday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'wednesday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="wednesday_to" name="wednesday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'wednesday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -55,7 +55,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="thursday_from" name="thursday_from" value="<?php echo @get_post_meta($post->ID, 'thursday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="thursday_to" name="thursday_to" value="<?php echo @get_post_meta($post->ID, 'thursday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+           <p><input type="text" id="thursday_from" name="thursday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'thursday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="thursday_to" name="thursday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'thursday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -70,7 +70,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="friday_from" name="friday_from" value="<?php echo @get_post_meta($post->ID, 'friday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="friday_to" name="friday_to" value="<?php echo @get_post_meta($post->ID, 'friday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="friday_from" name="friday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'friday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="friday_to" name="friday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'friday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -85,7 +85,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="saturday_from" name="saturday_from" value="<?php echo @get_post_meta($post->ID, 'saturday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="saturday_to" name="saturday_to" value="<?php echo @get_post_meta($post->ID, 'saturday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="saturday_from" name="saturday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'saturday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="saturday_to" name="saturday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'saturday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>
     <tr><td colspan="2"><hr /></td></tr>
@@ -100,7 +100,7 @@
 	<tr valign="top">
    		<td></td>
         <td>
-            <input type="text" id="sunday_from" name="sunday_from" value="<?php echo @get_post_meta($post->ID, 'sunday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="sunday_to" name="sunday_to" value="<?php echo @get_post_meta($post->ID, 'sunday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)
+            <p><input type="text" id="sunday_from" name="sunday_from" class="text" placeholder="09:00" value="<?php echo @get_post_meta($post->ID, 'sunday_from', true); ?>" />&nbsp;&mdash;&nbsp;<input type="text" id="sunday_to" name="sunday_to" class="text" placeholder="17:30" value="<?php echo @get_post_meta($post->ID, 'sunday_to', true); ?>" /> (in 24 hour format, ie 00:00 - 23:59)</p>
         </td>
     </tr>      
 </table>

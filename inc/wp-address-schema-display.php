@@ -8,7 +8,7 @@ Plugin Name: WP Address Schema
 Text Domain: wp-address-schema
 Plugin URI: http://www.creare.co.uk
 Description: A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness.
-Version: 0.0.4
+Version: 0.1.0
 Author: Creare
 Author URI: http://www.creare.co.uk
 License: GPLv2 or later
@@ -67,8 +67,10 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 			$tel = @get_post_meta($id, 'telephone', true);
 			$fax = @get_post_meta($id, 'fax', true);
 			$seperate = @get_post_meta($id, 'seperate', true);
+			$schema_classification = @get_post_meta($id, 'schema_classification', true);
+			$display_closed = @get_post_meta($id, 'display_closed', true);
 			
-			$string = '<'.(($seperate=='<li>')?'ul':'div').' itemscope itemtype="http://schema.org/LocalBusiness">';
+			$string = '<'.(($seperate=='<li>')?'ul':'div').' itemscope itemtype="http://schema.org/'.$schema_classification.'">';
 			if(isset($company) && $company != '') $string .= $this->parseLine('<span itemprop="legalName">'.$company.'</span>', $seperate, 'company');
 			if(isset($description) && $description != '') $string .= $this->parseLine('<span itemprop="description">'.$description.'</span>', $seperate, 'description');
 			
@@ -88,7 +90,7 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 				if(isset($county) && $county != '') $string .= $this->parseLine('<span itemprop="addressRegion">'.$county.'</span>', $seperate, 'address_region');
 				if(isset($pcode) && $pcode != '') $string .= $this->parseLine('<span itemprop="postalCode">'.$pcode.'</span>', $seperate, 'postal_code');
 				
-				$string .= '</'.(($seperate=='<il>')?'ul></li':'div').'>';
+				$string .= '</'.(($seperate=='<li>')?'ul></li':'div').'>';
 			}
 			
 			if(isset($tel) && $tel != '')$string .= $this->parseLine('Phone: <a href="tel:'.$tel.'"><span itemprop="telephone">'.$tel.'</span></a>', $seperate, 'telephone');
@@ -99,7 +101,7 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 				$string = substr($string, 0, (0-$count));
 			}
 			
-			$string .= $this->parseOpeningHours($this->getOpeningHours($id), $seperate);
+			$string .= $this->parseOpeningHours($this->getOpeningHours($id), $seperate, $display_closed);
 			
 			$string .= '</'.(($seperate=='<li>')?'ul':'div').'>';
 			
@@ -107,7 +109,7 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 			
 		}
 		
-		private function parseOpeningHours($hours = array(), $seperate) {
+		private function parseOpeningHours($hours = array(), $seperate, $display = 0) {
 			$string = '';
 			foreach($hours as $time) {
 				
@@ -123,7 +125,8 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 				
 					$html .= " &mdash; ".$time_array[1];
 					$html .= '</time>';
-				} else {
+					$string .= $this->parseLine($html, $seperate, 'opening-hours');
+				} elseif($display == 1) {
 					$html = '';	
 					if(count($day_array) > 1) {
 						$html .= $this->getDayName($day_array[0]).' to '.$this->getDayName($day_array[1]);					
@@ -131,10 +134,8 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 						$html .= $this->getDayName($day_array[0]);
 					}
 					$html .= " &mdash; ".$time_array[1];
+					$string .= $this->parseLine($html, $seperate, 'opening-hours');
 				}
-				
-				$string .= $this->parseLine($html, $seperate, 'opening-hours');
-				
 			}
 			
 			return $string;
@@ -229,11 +230,10 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 			$strings = array();
 			
 			foreach($days as $day) {
-				
 				// So lets see if the opening time is different to tomorrow
-				if($day['time']['from'] != $days[$i+1]['time']['from'] || $day['time']['to'] != $days[$i+1]['time']['to']) {
+				if(($day['time']['from'] != $days[$i+1]['time']['from'] || $day['time']['to'] != $days[$i+1]['time']['to']) || (!isset($days[$i+1]['time']['from']) && !isset($days[$i+1]['time']['to']))) {
 					// if it is, we'll show it
-					if((!isset($days[$i-1]) || $day['time']['from'] != $days[$i-1]['time']['from']) && (!isset($days[$i-1]) || $day['time']['to'] != $days[$i-1]['time']['to'])) {
+					if((!isset($days[$i-1]) || $day['time']['from'] != $days[$i-1]['time']['from']) || (!isset($days[$i-1]) || $day['time']['to'] != $days[$i-1]['time']['to'])) {
 						// if the opening times are different to yesterday
 						// Show single day
 						if($day['time']['from'] == 'x' && $day['time']['to'] == 'x') {

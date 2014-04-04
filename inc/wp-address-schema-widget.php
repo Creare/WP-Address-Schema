@@ -8,7 +8,7 @@ Plugin Name: WP Address Schema
 Text Domain: wp-address-schema
 Plugin URI: http://www.creare.co.uk
 Description: A simple plugin for displaying correctly formatted address information, as per the standards set out by http://schema.org/LocalBusiness.
-Version: 0.0.4
+Version: 0.1.0
 Author: Creare
 Author URI: http://www.creare.co.uk
 License: GPLv2 or later
