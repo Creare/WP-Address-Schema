@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: address, schema, opening hours, formatting
 Requires at least: 3.0.1
 Tested up to: 3.8.1
-Stable tag: 0.0.4
+Stable tag: 0.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,11 +33,9 @@ You can learn more about [WP Address Schema](http://www.creare.co.uk/services/wp
 
 Installing and using WP Address Schema could not be simpler:
 
-1. Upload `/WP-Address-Schema/` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Create Addresses to use by heading to Addresses -> Add Address
-4. View your Address by heading to Addresses -> All Addresses
-5. You can then move the Address Widget into any Widget Area, or simply use the shortcode to bring the address out anywhere you wish.
+1. Manage multiple Addresses easily
+2. Address and Opening Hours information
+3. Use the Widget to quickly and easily display addresses on the front end of your site 
 
 
 == Screenshots ==
@@ -49,29 +47,6 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
-
-= 0.1.0 =
-
-Progression to release version.
-* Admin
-** Fixes label alignment and input widths
-** Added placeholders to time fields
-** Added JS validation & UX improvements (autofocus etc)
-** Show/Hide time boxes depending on Open/Close status
-** Added template shortcode column
-** Added ? links to column headings
-** Added support for sub classifications of the LocalBusiness Organisational Schema 
-** Added option to show/hide closed days on the front end
-* Frontend
-Fixed div/ul closing tag bug
-** Added support for sub classifications of the LocalBusiness Organisational Schema
-** Added option to show/hide closed days on the front end
-
-= 0.0.4 =
-
-* Changes to the Opening Hour schema to exclude closed days from any formatting
-* Fixed class name inconsistencies
-* Updated all class comment headers
 
 = 0.0.3 =
 
