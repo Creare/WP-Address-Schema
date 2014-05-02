@@ -38,7 +38,6 @@ if(!class_exists('WP_Adress_Schema')) {
          * Define Constants
          */
 		protected $inc_dir;
-		protected $plugin_dir;
 		protected $plugin_url;
 		/**
          * Construct the plugin object
@@ -46,9 +45,8 @@ if(!class_exists('WP_Adress_Schema')) {
         public function __construct()
         {
 			// Set constants
-			$this->inc_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/inc/';
-			$this->plugin_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/';
-			$this->plugin_url = plugins_url().'/WP-Address-Schema/';
+			$this->inc_dir = 'inc/';
+			$this->plugin_url = plugins_url().'/wp-address-schema/';
 			// Config post type
             require_once $this->inc_dir."wp-address-schema-posttype.php";
 			$wp_address_schema_posttype = new WP_Address_Schema_Posttype();

@@ -4,7 +4,6 @@ class Wp_Address_Schema_Widget extends WP_Widget {
 	// Config Constants
 	public $name;
 	protected $inc_dir;
-	protected $plugin_dir;
 	protected $plugin_url;
 	
 	
@@ -18,9 +17,7 @@ class Wp_Address_Schema_Widget extends WP_Widget {
 	public function __construct() {
 		 parent::WP_Widget(false, $this->name = __('Address Schema', 'wp_address_schema') );
 		 // Set constants (annoying duplication of code...)
-		$this->inc_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/inc/';
-		$this->plugin_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/';
-		$this->plugin_url = plugins_url().'/WP-Address-Schema/';
+		$this->plugin_url = plugins_url().'/wp-address-schema/';
     }
  
     // widget form creation
@@ -64,7 +61,7 @@ class Wp_Address_Schema_Widget extends WP_Widget {
 		$widget_code_a = array_reverse($widget_code_a);
 		$widget_id = $widget_code_a[0];
 		
-		require_once $this->inc_dir.'wp-address-schema-display.php';
+		require_once 'wp-address-schema-display.php';
 		$display = new Wp_Address_Schema_Display();
 		echo $before_widget;
 		echo $display->parseAddress($widget_id);

@@ -74,7 +74,7 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 			
 			$string .= '</'.(($seperate=='<li>')?'ul':'div').'>';
 			
-			echo $string;
+			return $string;
 			
 		}
 		

@@ -2,7 +2,7 @@
 
 if(!class_exists('WP_Address_Schema_Posttype'))
 {
-    class WP_Address_Schema_Posttype
+    class WP_Address_Schema_Posttype extends WP_Address_Schema
     {
         const POST_TYPE = "wp_address_schema";
 		const TEXT_DOMAIN = 'wp-address-schema';
@@ -28,9 +28,6 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 			'seperate', 
 			'schema_classification', 'display_closed'
         );
-		protected $inc_dir;
-		protected $plugin_dir;
-		protected $plugin_url;
 		
 		public function __construct()
 		{
@@ -39,9 +36,6 @@ if(!class_exists('WP_Address_Schema_Posttype'))
 			// Add to admin_init function
 			$this->global = $GLOBALS;
 			// Set constants
-			$this->inc_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/inc/';
-			$this->plugin_dir = ABSPATH.'/wp-content/plugins/WP-Address-Schema/';
-			$this->plugin_url = plugins_url().'/WP-Address-Schema/';
 		}
 		
 		public function init()
