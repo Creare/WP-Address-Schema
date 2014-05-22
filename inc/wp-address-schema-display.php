@@ -39,7 +39,7 @@ if(!class_exists('WP_Adress_Schema_Display')) {
 			$schema_classification = @get_post_meta($id, 'schema_classification', true);
 			$display_closed = @get_post_meta($id, 'display_closed', true);
 			
-			$string = '<'.(($seperate=='<li>')?'ul':'div').' itemscope itemtype="http://schema.org/'.$schema_classification.'">';
+			$string = '<'.(($seperate=='<li>')?'ul':'div').' class="wp-address-schema" itemscope itemtype="http://schema.org/'.$schema_classification.'">';
 			if(isset($company) && $company != '') $string .= $this->parseLine('<span itemprop="legalName">'.$company.'</span>', $seperate, 'company');
 			if(isset($description) && $description != '') $string .= $this->parseLine('<span itemprop="description">'.$description.'</span>', $seperate, 'description');
 			
