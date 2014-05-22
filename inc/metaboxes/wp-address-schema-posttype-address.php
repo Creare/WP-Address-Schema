@@ -44,7 +44,7 @@
             <label for="country">State/County</label>
         </th>
         <td>
-            <input type="text" id="country" name="country" value="<?php echo @get_post_meta($post->ID, 'county', true); ?>" />
+            <input type="text" id="county" name="county" value="<?php echo @get_post_meta($post->ID, 'county', true); ?>" />
         </td>
     <tr>
     <tr valign="top">
